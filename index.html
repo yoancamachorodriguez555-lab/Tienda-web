@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placetas Market — Tienda Online de Placetas, Cuba</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a5f4a;
+            --primary-dark: #134a39;
+            --primary-light: #e8f5f0;
+            --accent: #c97c3b;
+            --accent-light: #fef3e8;
+            --text: #1a1a2e;
+            --text-light: #6b7280;
+            --text-lighter: #9ca3af;
+            --bg: #ffffff;
+            --bg-warm: #faf9f7;
+            --bg-cream: #f5f3ef;
+            --border: #e5e7eb;
+            --border-light: #f3f4f6;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow: 0 4px 20px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.1);
+            --radius-sm: 8px;
+            --radius: 16px;
+            --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-warm); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-lighter); }
+
+        /* ===== ANNOUNCEMENT BAR ===== */
+        .announcement-bar {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .announcement-bar a {
+            color: #a8e6cf;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .logo-sub {
+            font-size: 11px;
+            color: var(--text-lighter);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: -4px;
+        }
+
+        .nav-desktop {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+        .nav-desktop a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            padding: 8px 0;
+            transition: var(--transition);
+        }
+        .nav-desktop a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        .nav-desktop a:hover { color: var(--primary); }
+        .nav-desktop a:hover::after { width: 100%; }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-btn {
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg-warm);
+            color: var(--text);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+        }
+        .header-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .header-btn .badge {
+            position: absolute;
+            top: -2px; right: -2px;
+            background: var(--accent);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            width: 42px; height: 42px;
+            border: none; background: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-warm) 100%);
+            padding: 80px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(26,95,74,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -150px; left: -100px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(201,124,59,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+        .hero-content h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px; left: 0;
+            width: 100%; height: 12px;
+            background: rgba(26,95,74,0.12);
+            z-index: -1;
+            border-radius: 4px;
+        }
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 32px;
+            max-width: 480px;
+            line-height: 1.7;
+        }
+
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            padding: 6px;
+            max-width: 520px;
+            border: 1px solid var(--border-light);
+        }
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 14px 20px;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            background: transparent;
+        }
+        .search-box input::placeholder { color: var(--text-lighter); }
+        .search-box button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .search-box button:hover {
+            background: var(--primary-dark);
+            transform: translateX(2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .hero-stat {
+            text-align: left;
+        }
+        .hero-stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .hero-stat-label {
+            font-size: 13px;
+            color: var(--text-lighter);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+        .hero-image img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            object-fit: cover;
+            height: 480px;
+        }
+        .hero-floating-card {
+            position: absolute;
+            background: white;
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .hero-floating-card.card-1 {
+            top: 20px; right: -20px;
+            animation-delay: 0s;
+        }
+        .hero-floating-card.card-2 {
+            bottom: 40px; left: -30px;
+            animation-delay: 1.5s;
+        }
+        .floating-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: var(--primary-light);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            font-size: 18px;
+        }
+        .floating-text strong {
+            display: block;
+            font-size: 14px;
+            color: var(--text);
+        }
+        .floating-text span {
+            font-size: 12px;
+            color: var(--text-lighter);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ===== CATEGORIES ===== */
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+        .section-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+        .section-link:hover { gap: 10px; }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+        .category-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 28px 16px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+        .category-icon {
+            width: 56px; height: 56px;
+            border-radius: 16px;
+            background: var(--bg-warm);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+            transition: var(--transition);
+        }
+        .category-card:hover .category-icon {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        .category-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .category-count {
+            font-size: 12px;
+            color: var(--text-lighter);
+        }
+
+        /* ===== FEATURED STORES ===== */
+        .stores-section {
+            background: var(--bg-warm);
+        }
+        .stores-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .store-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .store-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        .store-banner {
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            position: relative;
+        }
+        .store-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            border: 4px solid white;
+            position: absolute;
+            bottom: -32px; left: 20px;
+            background: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            box-shadow: var(--shadow);
+        }
+        .store-body {
+            padding: 44px 20px 20px;
+        }
+        .store-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .store-type {
+            font-size: 13px;
+            color: var(--text-lighter);
+            margin-bottom: 12px;
+        }
+        .store-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .stars {
+            color: #f59e0b;
+            font-size: 13px;
+        }
+        .rating-text {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        .store-products {
+            display: flex;
+            gap: 8px;
+        }
+        .store-product-thumb {
+            width: 48px; height: 48px;
+            border-radius: 8px;
+            background: var(--bg-warm);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+        }
+
+        /* ===== PRODUCTS ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .product-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        .product-image-wrap {
+            position: relative;
+            padding: 20px;
+            background: var(--bg-warm);
+            display: flex; align-items: center; justify-content: center;
+            height: 240px;
+        }
+        .product-image-wrap img {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+        .product-card:hover .product-image-wrap img {
+            transform: scale(1.05);
+        }
+        .product-badge {
+            position: absolute;
+            top: 16px; left: 16px;
+            background: var(--accent);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .product-badge.new { background: var(--primary); }
+        .product-wishlist {
+            position: absolute;
+            top: 16px; right: 16px;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: white;
+            border: none;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            font-size: 14px;
+            color: var(--text-lighter);
+        }
+        .product-wishlist:hover {
+            background: #fee2e2;
+            color: #ef4444;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-store {
+            font-size: 12px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .product-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .product-rating .stars { font-size: 12px; }
+        .product-rating span {
+            font-size: 12px;
+            color: var(--text-lighter);
+        }
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .product-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text);
+        }
+        .product-price .currency {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-lighter);
+        }
+        .product-old-price {
+            font-size: 13px;
+            color: var(--text-lighter);
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+        .add-cart-btn {
+            width: 40px; height: 40px;
+            border-radius: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+        }
+        .add-cart-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        /* ===== TRUST SIGNALS ===== */
+        .trust-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 40px;
+        }
+        .trust-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        .trust-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .trust-icon {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            backdrop-filter: blur(10px);
+        }
+        .trust-text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .trust-text p {
+            font-size: 14px;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 32px;
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        .testimonial-card:hover {
+            box-shadow: var(--shadow);
+        }
+        .testimonial-stars {
+            color: #f59e0b;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .testimonial-text {
+            font-size: 15px;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .testimonial-avatar {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .testimonial-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .testimonial-location {
+            font-size: 12px;
+            color: var(--text-lighter);
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter-section {
+            background: var(--bg-cream);
+            padding: 80px 40px;
+        }
+        .newsletter-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .newsletter-inner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+        .newsletter-inner p {
+            color: var(--text-light);
+            margin-bottom: 32px;
+            font-size: 16px;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition);
+        }
+        .newsletter-form input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26,95,74,0.1);
+        }
+        .newsletter-form button {
+            padding: 16px 32px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .newsletter-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--text);
+            color: white;
+            padding: 60px 40px 30px;
+        }
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+        .footer-brand .logo-text {
+            color: white;
+            margin-bottom: 16px;
+        }
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+        .footer-social a {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 16px;
+        }
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        .footer-col h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.9);
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+        .footer-col a {
+            color: rgba(255,255,255,0.55);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        .footer-col a:hover {
+            color: white;
+            padding-left: 4px;
+        }
+        .footer-contact p {
+            color: rgba(255,255,255,0.55);
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-contact i {
+            color: var(--primary);
+            width: 16px;
+        }
+        .footer-contact .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 8px;
+            transition: var(--transition);
+        }
+        .footer-contact .whatsapp-btn:hover {
+            background: #1faa52;
+            transform: translateY(-2px);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-bottom p {
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+        }
+        .payment-methods {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .payment-methods span {
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+        }
+        .payment-icon {
+            width: 40px; height: 26px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+            font-weight: 600;
+        }
+
+        /* ===== FLOATING WHATSAPP ===== */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 24px; right: 24px;
+            width: 56px; height: 56px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .floating-whatsapp:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 30px rgba(37,211,102,0.5);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .categories-grid { grid-template-columns: repeat(3, 1fr); }
+            .products-grid { grid-template-columns: repeat(3, 1fr); }
+            .stores-grid { grid-template-columns: repeat(2, 1fr); }
+            .trust-inner { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner { padding: 0 20px; }
+            .nav-desktop { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero { padding: 40px 20px; }
+            .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content h1 { font-size: 36px; }
+            .hero-stats { gap: 24px; }
+            .section { padding: 60px 20px; }
+            .categories-grid { grid-template-columns: repeat(2, 1fr); }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .stores-grid { grid-template-columns: 1fr; }
+            .trust-inner { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .newsletter-form { flex-direction: column; }
+            .hero-image img { height: 300px; }
+            .hero-floating-card { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid { grid-template-columns: 1fr; }
+            .categories-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-content h1 { font-size: 28px; }
+            .section-title { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        🚚 Envíos gratuitos en Placetas en compras mayores a $30 &nbsp;|&nbsp; <a href="#">Ver negocios locales</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fas fa-store"></i></div>
+                <div>
+                    <div class="logo-text">Placetas Market</div>
+                    <div class="logo-sub">Tienda Online Local</div>
+                </div>
+            </a>
+
+            <nav>
+                <ul class="nav-desktop">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#tienda">Tienda</a></li>
+                    <li><a href="#negocios">Negocios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="header-btn" aria-label="Buscar"><i class="fas fa-search"></i></button>
+                <button class="header-btn" aria-label="Cuenta"><i class="fas fa-user"></i></button>
+                <button class="header-btn" aria-label="Carrito">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge">3</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Menú"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1>Todo lo que necesitas, <span>hecho en Placetas</span></h1>
+                <p>Descubre productos locales de calidad de los mejores negocios de nuestra ciudad. Apoya la economía local con cada compra.</p>
+                <div class="search-box">
+                    <input type="text" placeholder="¿Qué estás buscando hoy?">
+                    <button><i class="fas fa-search"></i> Buscar</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">50+</div>
+                        <div class="hero-stat-label">Negocios locales</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">2,400+</div>
+                        <div class="hero-stat-label">Productos disponibles</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">1,200+</div>
+                        <div class="hero-stat-label">Clientes felices</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop" alt="Productos locales de Placetas">
+                <div class="hero-floating-card card-1">
+                    <div class="floating-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="floating-text">
+                        <strong>Pago Seguro</strong>
+                        <span>Con ENZONA</span>
+                    </div>
+                </div>
+                <div class="hero-floating-card card-2">
+                    <div class="floating-icon"><i class="fas fa-truck"></i></div>
+                    <div class="floating-text">
+                        <strong>Entrega Rápida</strong>
+                        <span>En toda Placetas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section" id="tienda">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Explora por Categoría</h2>
+                <p class="section-subtitle">Encuentra exactamente lo que buscas</p>
+            </div>
+            <a href="#" class="section-link">Ver todas <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="categories-grid">
+            <a href="#" class="category-card">
+                <div class="category-icon">📱</div>
+                <div class="category-name">Electrónica</div>
+                <div class="category-count">340 productos</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">👕</div>
+                <div class="category-name">Moda</div>
+                <div class="category-count">520 productos</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">🏠</div>
+                <div class="category-name">Hogar</div>
+                <div class="category-count">280 productos</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">🍎</div>
+                <div class="category-name">Alimentos</div>
+                <div class="category-count">410 productos</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">💄</div>
+                <div class="category-name">Belleza</div>
+                <div class="category-count">190 productos</div>
+            </a>
+            <a href="#" class="category-card">
+                <div class="category-icon">⚽</div>
+                <div class="category-name">Deportes</div>
+                <div class="category-count">150 productos</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Stores -->
+    <section class="section stores-section" id="negocios">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Negocios Destacados</h2>
+                <p class="section-subtitle">Conoce a los emprendedores de Placetas</p>
+            </div>
+            <a href="#" class="section-link">Ver todos <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="stores-grid">
+            <div class="store-card">
+                <div class="store-banner">
+                    <div class="store-avatar">🛒</div>
+                </div>
+                <div class="store-body">
+                    <div class="store-name">Bodega El Ranchón</div>
+                    <div class="store-type">Alimentos y Bebidas</div>
+                    <div class="store-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-text">4.9 (127 reseñas)</span>
+                    </div>
+                    <div class="store-products">
+                        <div class="store-product-thumb">🥖</div>
+                        <div class="store-product-thumb">🥛</div>
+                        <div class="store-product-thumb">🧀</div>
+                        <div class="store-product-thumb">🍯</div>
+                    </div>
+                </div>
+            </div>
+            <div class="store-card">
+                <div class="store-banner" style="background: linear-gradient(135deg, #c97c3b 0%, #a0522d 100%);">
+                    <div class="store-avatar">👗</div>
+                </div>
+                <div class="store-body">
+                    <div class="store-name">Moda Cubana</div>
+                    <div class="store-type">Ropa y Accesorios</div>
+                    <div class="store-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-text">4.8 (89 reseñas)</span>
+                    </div>
+                    <div class="store-products">
+                        <div class="store-product-thumb">👕</div>
+                        <div class="store-product-thumb">👖</div>
+                        <div class="store-product-thumb">👠</div>
+                        <div class="store-product-thumb">👜</div>
+                    </div>
+                </div>
+            </div>
+            <div class="store-card">
+                <div class="store-banner" style="background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);">
+                    <div class="store-avatar">📱</div>
+                </div>
+                <div class="store-body">
+                    <div class="store-name">TechPlacetas</div>
+                    <div class="store-type">Electrónica</div>
+                    <div class="store-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-text">4.7 (203 reseñas)</span>
+                    </div>
+                    <div class="store-products">
+                        <div class="store-product-thumb">📱</div>
+                        <div class="store-product-thumb">🎧</div>
+                        <div class="store-product-thumb">⌚</div>
+                        <div class="store-product-thumb">💻</div>
+                    </div>
+                </div>
+            </div>
+            <div class="store-card">
+                <div class="store-banner" style="background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);">
+                    <div class="store-avatar">🏠</div>
+                </div>
+                <div class="store-body">
+                    <div class="store-name">Decorarte Placetas</div>
+                    <div class="store-type">Hogar y Decoración</div>
+                    <div class="store-rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-text">4.9 (64 reseñas)</span>
+                    </div>
+                    <div class="store-products">
+                        <div class="store-product-thumb">🪴</div>
+                        <div class="store-product-thumb">🖼️</div>
+                        <div class="store-product-thumb">🛋️</div>
+                        <div class="store-product-thumb">🕯️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Products -->
+    <section class="section">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Productos Populares</h2>
+                <p class="section-subtitle">Lo más vendido esta semana en Placetas</p>
+            </div>
+            <a href="#" class="section-link">Ver todo <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image-wrap">
+                    <span class="product-badge">-20%</span>
+                    <button class="product-wishlist"><i class="far fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop" alt="Reloj inteligente">
+                </div>
+                <div class="product-info">
+                    <div class="product-store">TechPlacetas</div>
+                    <div class="product-name">Smartwatch Pro Series — Monitor de salud y fitness</div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(47)</span>
+                    </div>
+                    <div class="product-price-row">
+                        <div>
+                            <span class="product-price">$85<span class="currency">.00</span></span>
+                            <span class="product-old-price">$106.00</span>
+                        </div>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-wrap">
+                    <span class="product-badge new">Nuevo</span>
+                    <button class="product-wishlist"><i class="far fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop" alt="Zapatillas deportivas">
+                </div>
+                <div class="product-info">
+                    <div class="product-store">Moda Cubana</div>
+                    <div class="product-name">Zapatillas Deportivas Ultra — Edición Placetas</div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(32)</span>
+                    </div>
+                    <div class="product-price-row">
+                        <div>
+                            <span class="product-price">$45<span class="currency">.00</span></span>
+                        </div>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-wrap">
+                    <button class="product-wishlist"><i class="far fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop" alt="Auriculares">
+                </div>
+                <div class="product-info">
+                    <div class="product-store">TechPlacetas</div>
+                    <div class="product-name">Auriculares Inalámbricos Premium — Sonido HD</div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>(28)</span>
+                    </div>
+                    <div class="product-price-row">
+                        <div>
+                            <span class="product-price">$32<span class="currency">.50</span></span>
+                        </div>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-wrap">
+                    <span class="product-badge">-15%</span>
+                    <button class="product-wishlist"><i class="far fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=400&fit=crop" alt="Cámara instantánea">
+                </div>
+                <div class="product-info">
+                    <div class="product-store">Decorarte Placetas</div>
+                    <div class="product-name">Cámara Instantánea Retro — Captura momentos</div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(56)</span>
+                    </div>
+                    <div class="product-price-row">
+                        <div>
+                            <span class="product-price">$68<span class="currency">.00</span></span>
+                            <span class="product-old-price">$80.00</span>
+                        </div>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-wrap">
+                    <button class="product-wishlist"><i class="far fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop" alt="Gafas de sol">
+                </div>
+                <div class="product-info">
+                    <div class="product-store">Moda Cubana</div>
+                    <div class="product-name">Gafas de Sol Polarizadas — Estilo Verano 2026</div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(41)</span>
+                    </div>
+                    <div class="product-price-row">
+                        <div>
+                            <span class="product-price">$22<span class="currency">.00</span></span>
+                        </div>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-wrap">
+                    <span class="product-badge new">Nuevo</span>
+                    <button class="product-wishlist"><i class="far fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400&h=400&fit=crop" alt="Crema facial">
+                </div>
+                <div class="product-info">
+                    <div class="product-store">Belleza Natural</div>
+                    <div class="product-name">Crema Hidratante Natural — Ingredientes locales</div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>(19)</span>
+                    </div>
+                    <div class="product-price-row">
+                        <div>
+                            <span class="product-price">$15<span class="currency">.50</span></span>
+                        </div>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-wrap">
+                    <span class="product-badge">-10%</span>
+                    <button class="product-wishlist"><i class="far fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400&h=400&fit=crop" alt="Smartwatch">
+                </div>
+                <div class="product-info">
+                    <div class="product-store">TechPlacetas</div>
+                    <div class="product-name">Smartwatch Fitness Tracker — Resistente al agua</div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(73)</span>
+                    </div>
+                    <div class="product-price-row">
+                        <div>
+                            <span class="product-price">$55<span class="currency">.00</span></span>
+                            <span class="product-old-price">$61.00</span>
+                        </div>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-wrap">
+                    <button class="product-wishlist"><i class="far fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400&h=400&fit=crop" alt="Botella térmica">
+                </div>
+                <div class="product-info">
+                    <div class="product-store">Bodega El Ranchón</div>
+                    <div class="product-name">Botella Térmica de Acero — 24h frío/calor</div>
+                    <div class="product-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(38)</span>
+                    </div>
+                    <div class="product-price-row">
+                        <div>
+                            <span class="product-price">$18<span class="currency">.00</span></span>
+                        </div>
+                        <button class="add-cart-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Signals -->
+    <section class="trust-section">
+        <div class="trust-inner">
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-truck"></i></div>
+                <div class="trust-text">
+                    <h4>Envío Gratuito</h4>
+                    <p>En compras mayores a $30 dentro de Placetas. Entrega en 24-48 horas.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="trust-text">
+                    <h4>Pago Seguro</h4>
+                    <p>Transacciones protegidas con ENZONA y encriptación SSL de 256 bits.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-undo"></i></div>
+                <div class="trust-text">
+                    <h4>Devolución Garantizada</h4>
+                    <p>7 días para devolver cualquier producto. Sin preguntas, sin complicaciones.</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fas fa-headset"></i></div>
+                <div class="trust-text">
+                    <h4>Soporte Local</h4>
+                    <p>Atención personalizada por WhatsApp. Respondemos en menos de 1 hora.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+                <p class="section-subtitle">Opiniones reales de vecinos de Placetas</p>
+            </div>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Increíble poder comprar productos locales sin salir de casa. La entrega fue súper rápida y el producto llegó en perfectas condiciones. ¡Recomiendo 100%!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MR</div>
+                    <div>
+                        <div class="testimonial-name">María Rodríguez</div>
+                        <div class="testimonial-location">Placetas, Villa Clara</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Como dueño de negocio, Placetas Market ha sido una bendición. Ahora vendo mis productos a toda la ciudad. La plataforma es muy fácil de usar."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">CP</div>
+                    <div>
+                        <div class="testimonial-name">Carlos Pérez</div>
+                        <div class="testimonial-location">Dueño de TechPlacetas</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★☆</div>
+                <p class="testimonial-text">"Me encanta apoyar los negocios locales. La calidad de los productos es excelente y el pago con ENZONA me da mucha confianza."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">LG</div>
+                    <div>
+                        <div class="testimonial-name">Laura González</div>
+                        <div class="testimonial-location">Placetas, Villa Clara</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="newsletter-inner">
+            <h2>Únete a la comunidad</h2>
+            <p>Recibe ofertas exclusivas, novedades de negocios locales y noticias de Placetas directo a tu correo.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico" required>
+                <button type="submit">Suscribirme</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-text" style="font-family: 'Playfair Display', serif; font-size: 24px;">Placetas Market</div>
+                    <p>La primera tienda online de Placetas conectando a los mejores negocios locales con los vecinos de nuestra ciudad. Hecho con ❤️ en Cuba.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Comprar</h4>
+                    <ul>
+                        <li><a href="#">Todos los productos</a></li>
+                        <li><a href="#">Nuevos ingresos</a></li>
+                        <li><a href="#">Ofertas</a></li>
+                        <li><a href="#">Más vendidos</a></li>
+                        <li><a href="#">Categorías</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Vender</h4>
+                    <ul>
+                        <li><a href="#">Vende en Placetas Market</a></li>
+                        <li><a href="#">Precios y comisiones</a></li>
+                        <li><a href="#">Guía del vendedor</a></li>
+                        <li><a href="#">Centro de ayuda</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Nuestros negocios</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Prensa</a></li>
+                        <li><a href="#">Trabaja con nosotros</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Placetas, Villa Clara, Cuba</p>
+                    <p><i class="fas fa-envelope"></i> hola@placetasmarket.cu</p>
+                    <p><i class="fas fa-phone"></i> +53 5 897 1720</p>
+                    <a href="https://wa.me/5358971720" class="whatsapp-btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Escríbenos por WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Placetas Market. Todos los derechos reservados. Hecho en Placetas, Cuba.</p>
+                <div class="payment-methods">
+                    <span>Pagos seguros con:</span>
+                    <div class="payment-icon">ENZ</div>
+                    <div class="payment-icon">VISA</div>
+                    <div class="payment-icon">MC</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/5358971720" class="floating-whatsapp" target="_blank" title="Chatea con nosotros">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</body>
+</html>
